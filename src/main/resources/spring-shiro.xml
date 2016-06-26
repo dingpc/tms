@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+	default-lazy-init="true">
+
+	<description>apache shiro配置</description>
+
+	<!-- 定义Shiro权限过滤过滤器 -->
+	<bean name="shiroFilterChainDefinitions" class="java.lang.String">
+		<constructor-arg>
+			<value>
+				<!-- 静态资源允许访问 -->
+                /static/** = anon
+                <!-- 登录页允许访问 -->
+                /login/logon = anon
+                /login/validate = anon
+                <!-- 其他资源需要认证 -->
+                /login/** = authc
+                /daily/** = authc,roles["normal"]
+                /dailyinfo/** = authc,roles["normal"]
+                /dailyreport/** = authc,roles["normal"]
+                /task/** = authc,roles["normal"]
+                /tasktest/** = authc,roles["normal"]
+                /sys/** = authc,roles["admin"]
+                /sysuser/** = authc,roles["admin"]
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 安全认证过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login/logon"/>
+        <property name="successUrl" value="/login/home"/>
+        <property name="unauthorizedUrl" value="/login/401"/>
+        <property name="filterChainDefinitions">
+            <ref bean="shiroFilterChainDefinitions"/>
+        </property>
+    </bean>
+
+	<!-- 定义Shiro安全管理配置 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="myRealm" />
+		<property name="sessionManager" ref="sessionManager" />
+		<!-- <property name="cacheManager" ref="shiroEhcacheManager" /> -->
+	</bean>
+	<bean id="myRealm" class="com.dpc.shiro.MyRealm"/>
+	
+	<!-- 自定义会话管理配置 -->
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager"> 
+		<property name="sessionDAO" ref="sessionDAO"/>
+		<!-- 会话超时时间，单位：毫秒  -->
+		<property name="globalSessionTimeout" value="14400000"/>
+		<!-- 定时清理失效会话, 清理用户直接关闭浏览器造成的孤立会话   -->
+		<property name="sessionValidationInterval" value="14400000"/>
+<!--  		<property name="sessionValidationSchedulerEnabled" value="false"/> -->
+ 		<property name="sessionValidationSchedulerEnabled" value="true"/>
+		<property name="sessionIdCookie" ref="sessionIdCookie"/>
+		<property name="sessionIdCookieEnabled" value="true"/>
+	</bean>
+	
+	<!-- 指定本系统SESSIONID, 默认为: JSESSIONID 问题: 与SERVLET容器名冲突, 如JETTY, TOMCAT 等默认JSESSIONID,
+		当跳出SHIRO SERVLET时如ERROR-PAGE容器会为JSESSIONID重新分配值导致登录会话丢失! -->
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+	    <constructor-arg name="name" value="wmp.session.id"/>
+	</bean>
+	<!-- 自定义Session存储容器 -->
+	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+		<property name="sessionIdGenerator" ref="sessionIdGenerator" />
+		<property name="activeSessionsCacheName" value="activeSessionsCache" />
+		<!-- <property name="cacheManager" ref="shiroEhcacheManager" /> -->
+	</bean>
+	
+    <!-- 缓存管理器 使用Ehcache实现 -->
+    <!-- <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
+    </bean> -->
+
+	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+	
+    <!-- Shiro生命周期处理器 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

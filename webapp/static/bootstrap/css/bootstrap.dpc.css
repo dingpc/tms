@@ -1,0 +1,185 @@
+.dpc-header.dpc-blue {
+    border-bottom-color: #d5e3ef;
+}
+h3.dpc-smaller {
+    font-size: 21px;
+}
+.dpc-header {
+    border-bottom: 1px solid #ccc;
+    line-height: 28px;
+    /* margin-bottom: 16px;
+    margin-top: 18px;
+    padding-bottom: 4px; */
+}
+.dpc-blue {
+    color: #478fca !important;
+}
+.dpc-lighter {
+    font-weight: lighter;
+}
+h3 {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.navbar-form {
+	padding-left: 0px;
+}
+
+.listTableHead th {
+    background-color: #337AB7;
+    text-align: center;
+    vertical-align: middle;
+    height: 32px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #fff;
+    white-space: nowrap;
+    border-bottom-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+/* widget-box START*/
+.page-content {
+    background: #FFF none repeat scroll 0% 0%;
+    margin: 0px;
+    padding: 8px 20px 24px;
+}
+.widget-box {
+    padding: 0px;
+    box-shadow: none;
+    margin: 0px 0px 3px 0px;
+    border-bottom: 1px solid #CCC;
+}
+
+.widget-header {
+    box-sizing: content-box;
+    position: relative;
+    min-height: 38px;
+    background: #F7F7F7 linear-gradient(to bottom, #FFF 0px, #EEE 100%) repeat-x scroll 0% 0%;
+    color: #669FC7;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #CCC #CCC #DDD;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    padding-left: 12px;
+}
+
+widget-header > .widget-caption, .widget-header > :first-child {
+    line-height: 36px;
+    padding: 0px;
+    margin: 0px;
+    display: inline;
+}
+h4.smaller {
+    font-size: 17px;
+}
+.lighter {
+    font-weight: lighter;
+}
+h4 {
+    font-size: 18px;
+    font-weight: normal;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.widget-body {
+    border-width: 0px 1px 1px;
+    border-style: none solid solid;
+    border-color: -moz-use-text-color #CCC #CCC;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    background-color: #FFF;
+}
+.widget-main.no-padding {
+    padding: 0px;
+}
+.widget-main {
+    padding: 12px;
+}
+.no-padding {
+    padding: 0px !important;
+}
+.dialogs {
+    padding: 9px 9px 0px;
+    position: relative;
+}
+
+.itemdiv.dialogdiv {
+    padding-bottom: 14px;
+}
+.itemdiv {
+    padding-right: 3px;
+    min-height: 66px;
+    position: relative;
+}
+/* widget-box END*/
+
+
+.div-operation-button {
+	float: right;
+}
+
+/* Page Style START*/
+.pagination {
+  display: block;
+  position: relative;
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+  margin: 5px 0px 20px 0px;
+}
+.pagination>button {
+  border: 1px solid #39414a;
+  position: absolute;
+  top: -10px;
+  color: #39414a;
+  white-space: nowrap;
+  border-radius: 3px;
+  text-decoration: none;
+}
+.pagination>button.newer-posts {
+  left: 10px;
+}
+.pagination>button.older-posts {
+  right: 10px;
+}
+.pagination .page-number {
+  color: #39414a;
+}
+/* Page Style END*/
+
+/*
+ * add by dingpc for top Color START
+ */
+.navbar-inverse {
+	background: #337AB7
+}
+
+.navbar .navbar-text, .navbar .navbar-link {
+	color: #fff
+}
+
+.navbar .navbar-brand {
+	color: #fff;
+	
+}
+.navbar-inverse .navbar-nav {
+	color: #fff;
+}
+.navbar-inverse .navbar-text {
+	color: #fff;
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: #fff;
+}
+/*
+ * add by dingpc for top Color END
+ */

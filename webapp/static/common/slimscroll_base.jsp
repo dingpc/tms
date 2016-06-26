@@ -1,0 +1,1 @@
+<script src="/static/scripts/jquery.slimscroll.min.js" type="text/javascript"></script>
